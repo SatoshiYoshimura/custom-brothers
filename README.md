@@ -1,2 +1,2 @@
 # custom-brothers
-モック
+モックです
