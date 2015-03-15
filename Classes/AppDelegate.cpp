@@ -30,6 +30,9 @@ bool AppDelegate::applicationDidFinishLaunching() {
 
     glview->setDesignResolutionSize(1136, 640, ResolutionPolicy::FIXED_HEIGHT);
     
+    
+    FileUtils::getInstance()->addSearchPath("character");
+    
     // create a scene. it's an autorelease object
     auto scene = GameLayer::createScene();
     // run

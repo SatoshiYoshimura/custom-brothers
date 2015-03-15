@@ -8,7 +8,7 @@
 
 #include "GameLayer.h"
 #include "./Data/ImagePath.h"
-#include "Data/ActionData.h"
+#include "./Data/ActionData.h"
 
 #define WINSIZE Director::getInstance()->getWinSize()
 
