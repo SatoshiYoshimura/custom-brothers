@@ -10,7 +10,7 @@
 #define __AprinpicMock__BaseCharacter__
 
 #include "cocos2d.h"
-//#include "coco"
+#include "../Gun/BaseGun.h"
 
 USING_NS_CC;
 
@@ -20,7 +20,7 @@ public:
     virtual bool init(const std::string& filename);
     static BaseCharacter* create(const std::string& filename);
 private:
-    
+    BaseGun* myGun;
 };
 
 #endif /* defined(__AprinpicMock__BaseCharacter__) */
