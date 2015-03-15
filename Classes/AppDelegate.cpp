@@ -31,6 +31,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
     
     
     FileUtils::getInstance()->addSearchPath("character");
+    FileUtils::getInstance()->addSearchPath("gun");
     
     // create a scene. it's an autorelease object
     auto scene = GameLayer::createScene();
