@@ -9,8 +9,12 @@
 #ifndef __AprinpicMock__BaseGun__
 #define __AprinpicMock__BaseGun__
 
-class BaseGun {
+namespace Parts
+{
+    class BaseGun {
 
-};
+    };
+}
+
 
 #endif /* defined(__AprinpicMock__BaseGun__) */
