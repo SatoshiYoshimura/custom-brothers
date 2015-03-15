@@ -12,6 +12,7 @@
 #include "cocos2d.h"
 #include "../Gun/BaseGun.h"
 #include "../Leg/BaseLeg.h"
+#include "../Bomb/BaseBomb.h"
 
 USING_NS_CC;
 using namespace Parts;
@@ -24,6 +25,7 @@ public:
 private:
     BaseGun* myGun;
     BaseLeg* myLeg;
+    BaseBomb* myBomb;
 };
 
 #endif /* defined(__AprinpicMock__BaseCharacter__) */
