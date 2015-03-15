@@ -7,7 +7,7 @@ import android.os.Bundle;
 // You can use "System.loadLibrary()" to load other .so files.
 
 public class Cocos2dxActivity extends NativeActivity{
-
+	private static Cocos2dxActivity instance = null;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -30,6 +30,10 @@ public class Cocos2dxActivity extends NativeActivity{
 		
 		//2.Set the format of window
 		// getWindow().setFormat(PixelFormat.TRANSLUCENT);
-		
+	     this.instance = this;
+	}
+	
+	public static Cocos2dxActivity getInstance() {
+	        return instance;
 	}
 }

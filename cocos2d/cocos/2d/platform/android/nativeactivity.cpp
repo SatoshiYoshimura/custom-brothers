@@ -115,7 +115,7 @@ extern EditTextCallback s_pfEditTextCallback;
 extern void* s_ctx;
 
 extern "C" {
-    JNIEXPORT void JNICALL Java_org_cocos2dx_lib_Cocos2dxHelper_nativeSetEditTextDialogResult(JNIEnv * env, jobject obj, jbyteArray text) { 
+    JNIEXPORT void JNICALL Java_org_cocos2dx_lib_Cocos2dxHelper_nativeSetEditTextDialogResult(JNIEnv * env, jobject obj, jbyteArray text) {
         jsize  size = env->GetArrayLength(text);
         pthread_mutex_lock(&(engine.app->mutex));
         if (size > 0) {
@@ -263,7 +263,7 @@ static cocos_dimensions engine_init_display(struct engine* engine)
 static bool s_methodInitialized = false;
 static void dispatch_pending_runnables() {
     static cocos2d::JniMethodInfo info;
-    
+
     if (!s_methodInitialized) {
         s_methodInitialized = cocos2d::JniHelper::getStaticMethodInfo(
             info,
@@ -303,14 +303,14 @@ static void engine_draw_frame(struct engine* engine)
     /* // Just fill the screen with a color. */
     /* glClearColor(((float)engine->state.x)/engine->width, engine->state.angle, */
     /*         ((float)engine->state.y)/engine->height, 1); */
-    /* glClear(GL_COLOR_BUFFER_BIT); */ 
-    
+    /* glClear(GL_COLOR_BUFFER_BIT); */
+
     if (s_pfEditTextCallback && editboxText)
     {
         s_pfEditTextCallback(editboxText, s_ctx);
         free(editboxText);
         editboxText = NULL;
-    }   
+    }
 
     eglSwapBuffers(engine->display, engine->surface);
 }
@@ -469,7 +469,7 @@ static int32_t handle_key_input(AInputEvent *event)
 
         switch (AKeyEvent_getKeyCode(event))
         {
-        case AKEYCODE_BACK: 
+        case AKEYCODE_BACK:
             {
                 cocos2d::EventKeyboard event(cocos2d::EventKeyboard::KeyCode::KEY_BACKSPACE, false);
                 dispatcher->dispatchEvent(&event);
@@ -545,7 +545,7 @@ void setAccelerometerIntervalJni(float interval) {
  * Process the next main command.
  */
 static void engine_handle_cmd(struct android_app* app, int32_t cmd)
-{ 
+{
     struct engine* engine = (struct engine*)app->userData;
     switch (cmd) {
         case APP_CMD_SAVE_STATE:

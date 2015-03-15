@@ -8,7 +8,7 @@
 
 #include "GameLayer.h"
 #include "./Data/ImagePath.h"
-#include "Data/ActionData.h"
+#include "./Data/ActionData.h"
 
 #define WINSIZE Director::getInstance()->getWinSize()
 
@@ -75,11 +75,11 @@ void GameLayer::createGround()
 
 void GameLayer::createEnemy()
 {
-    ch_Enemy = new BaseCharacter();
+    ch_Enemy = BaseCharacter::create("black.png");
     //自分の生成
-    ch_Enemy->sp_Character = Sprite::create(ImagePath::Character::CHARACTER_BLACK);
-    ch_Enemy->sp_Character->setPosition(Vect(100,200));
-    ch_Enemy->sp_Character->setTag(T_Enemy);
+//    ch_Enemy->sp_Character = Sprite::create(ImagePath::Character::CHARACTER_BLACK);
+    ch_Enemy->setPosition(Point(100,200));
+    ch_Enemy->setTag(T_Enemy);
     
     //物質特徴
     PhysicsMaterial material;
@@ -88,21 +88,20 @@ void GameLayer::createEnemy()
     material.friction = 0.3;
     
     //物質構造の設定
-    auto body = PhysicsBody::createCircle(ch_Enemy->sp_Character->getContentSize().width * 0.47, material);
+    auto body = PhysicsBody::createCircle(ch_Enemy->getContentSize().width * 0.47, material);
     body->setGravityEnable(false);
-    ch_Enemy->sp_Character->setPhysicsBody(body);
+    ch_Enemy->setPhysicsBody(body);
     
-    ch_Enemy->sp_Character->setZOrder(Z_Enemy);
-    this->addChild(ch_Enemy->sp_Character);
+    ch_Enemy->setZOrder(Z_Enemy);
+    this->addChild(ch_Enemy);
 }
 
 void GameLayer::createMyMacine()
 {
     //自分の生成
-    ch_MyMacine = new BaseCharacter();
-    ch_MyMacine->sp_Character = Sprite::create(ImagePath::Character::CHARACTER_BALL);
-    ch_MyMacine->sp_Character->setPosition(Vect(300,300));
-    ch_MyMacine->sp_Character->setTag(T_MyMacine);
+    ch_MyMacine = BaseCharacter::create(ImagePath::Character::CHARACTER_BALL);
+    ch_MyMacine->setPosition(Point(300,300));
+    ch_MyMacine->setTag(T_MyMacine);
     
 //    //物質特徴
     PhysicsMaterial material;
@@ -111,12 +110,12 @@ void GameLayer::createMyMacine()
     material.friction = 0.3;
     
     //物質構造の設定
-    auto body = PhysicsBody::createCircle(ch_MyMacine->sp_Character->getContentSize().width * 0.47, material);
+    auto body = PhysicsBody::createCircle(ch_MyMacine->getContentSize().width * 0.47, material);
     body->setGravityEnable(false);
-    ch_MyMacine->sp_Character->setPhysicsBody(body);
+    ch_MyMacine->setPhysicsBody(body);
     
-    ch_MyMacine->sp_Character->setZOrder(Z_MyMacine);
-    this->addChild(ch_MyMacine->sp_Character);
+    ch_MyMacine->setZOrder(Z_MyMacine);
+    this->addChild(ch_MyMacine);
 }
 
 void GameLayer::onTouchEnded(Touch *pTouch, Event *unused_event)
@@ -137,8 +136,8 @@ void GameLayer::onTouchEnded(Touch *pTouch, Event *unused_event)
     //移動距離しきい値100より大きければスワイプそうさだと判断
     if(r > ActionData::swipeLine){
         //自分の位置確認
-        CCLOG("ch_MyMacine x:%f y:%f", ch_MyMacine->sp_Character->getPosition().x, ch_MyMacine->sp_Character->getPosition().y);
-        Point myPoint = ch_MyMacine->sp_Character->getPosition();
+        CCLOG("ch_MyMacine x:%f y:%f", ch_MyMacine->getPosition().x, ch_MyMacine->getPosition().y);
+        Point myPoint = ch_MyMacine->getPosition();
         float n = f_myMoveDistance;
         float tmp1  = (n / r);
         //動きたい位置
@@ -150,8 +149,8 @@ void GameLayer::onTouchEnded(Touch *pTouch, Event *unused_event)
         Point toMove_ = Point(c2_x, c2_y);
         
         //ダッシュ中はダッシュできない
-        if ( ch_MyMacine->sp_Character->getNumberOfRunningActions() == 0 ) {
-            ch_MyMacine->sp_Character->runAction(MoveTo::create(f_myMoveTime,toMove_));
+        if ( ch_MyMacine->getNumberOfRunningActions() == 0 ) {
+            ch_MyMacine->runAction(MoveTo::create(f_myMoveTime,toMove_));
         }
     
     }
@@ -166,11 +165,11 @@ bool GameLayer::onTouchBegan(Touch *pTouch, Event *unused_event){
 
 void GameLayer::setMyMacineDynamicFalse(float tm)
 {
-    ch_MyMacine->sp_Character->getPhysicsBody()->setDynamic(false);
+    ch_MyMacine->getPhysicsBody()->setDynamic(false);
     this->scheduleOnce(schedule_selector(GameLayer::setMyMacineDynamicTrue), 2);
 }
 
 void GameLayer::setMyMacineDynamicTrue(float tm)
 {
-    ch_MyMacine->sp_Character->getPhysicsBody()->setDynamic(true);
+    ch_MyMacine->getPhysicsBody()->setDynamic(true);
 }
