@@ -11,8 +11,10 @@
 
 #include "cocos2d.h"
 #include "../Gun/BaseGun.h"
+#include "../Leg/BaseLeg.h"
 
 USING_NS_CC;
+using namespace Parts;
 
 class BaseCharacter : public Sprite{
 
@@ -21,6 +23,7 @@ public:
     static BaseCharacter* create(const std::string& filename);
 private:
     BaseGun* myGun;
+    BaseLeg* myLeg;
 };
 
 #endif /* defined(__AprinpicMock__BaseCharacter__) */
