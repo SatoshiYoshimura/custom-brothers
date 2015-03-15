@@ -70,6 +70,11 @@ public class Cocos2dxHelper {
     // ===========================================================
     // Constructors
     // ===========================================================
+    
+    public static void dispatchPendingRunnables() {
+    	
+	}
+
 
     public static void runOnGLThread(final Runnable r) {
         ((Cocos2dxActivity)sActivity).runOnGLThread(r);
